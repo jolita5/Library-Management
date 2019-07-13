@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using LibraryManagement.Data.Model;
 
 namespace LibraryManagement.Data.Interfaces
 {
-    interface ICustomerRepository
+    interface ICustomerRepository: IRepository<Customer>
     {
     }
 }
