@@ -45,14 +45,6 @@ namespace LibraryManagement.Controllers
             return View(customerVM);
         }
 
-        public IActionResult Delete(int id)
-        {
-            var customer = _customerRepository.GetById(id);
-
-            _customerRepository.Delete(customer);
-
-            return RedirectToAction("List");
-        }
 
         public IActionResult Create()
         {
@@ -79,6 +71,15 @@ namespace LibraryManagement.Controllers
         public IActionResult Update(Customer customer)
         {
             _customerRepository.Update(customer);
+
+            return RedirectToAction("List");
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var customer = _customerRepository.GetById(id);
+
+            _customerRepository.Delete(customer);
 
             return RedirectToAction("List");
         }
