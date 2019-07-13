@@ -11,7 +11,7 @@ namespace LibraryManagement.Data
 
         }
 
-        public DbSet<Customer> Costomers { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Book> Books { get; set; }
 
