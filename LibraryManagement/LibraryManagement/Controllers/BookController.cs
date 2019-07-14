@@ -106,6 +106,12 @@ namespace LibraryManagement.Controllers
 
         public IActionResult Update(BookViewModel bookViewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                bookViewModel.Authors = _authorRepository.GetAll();
+                return View(bookViewModel);
+            }
+
             _bookRepository.Update(bookViewModel.Book);
 
             return RedirectToAction("List");
