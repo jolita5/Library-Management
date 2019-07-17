@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using LibraryManagement.Data.Interfaces;
 using LibraryManagement.Data.Model;
+using LibraryManagement.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -32,19 +33,29 @@ namespace LibraryManagement.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            var viewModel = new CreateAuthorViewModel
+            {
+                Referer = Request.Headers["Referer"].ToString()
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]
 
-        public IActionResult Create(Author author)
+        public IActionResult Create(CreateAuthorViewModel authorVM)
         {
             if (!ModelState.IsValid)
             {
-                return View(author);
+                return View(authorVM);
             }
 
-            _authorRepository.Create(author);
+            _authorRepository.Create(authorVM.Author);
+
+            if(!string.IsNullOrEmpty(authorVM.Referer))
+            {
+                return Redirect(authorVM.Referer);
+            }
 
             return RedirectToAction("List");
         }
