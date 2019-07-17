@@ -53,6 +53,10 @@ namespace LibraryManagement.Controllers
 
         public IActionResult Create(Customer customer)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(customer);
+            }
             _customerRepository.Create(customer);
 
             return RedirectToAction("List");
@@ -68,6 +72,11 @@ namespace LibraryManagement.Controllers
 
         public IActionResult Update(Customer customer)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(customer);
+            }
+
             _customerRepository.Update(customer);
 
             return RedirectToAction("List");
